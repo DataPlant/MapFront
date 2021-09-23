@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import ReactMapGL from 'react-map-gl';
 import { Container, Col, Row } from 'reactstrap';
 import Geocoder from 'react-mapbox-gl-geocoder';
-
+import axios from 'axios'
 
 const mapStyle = {
     width: '100%',
@@ -34,6 +34,14 @@ class MapView extends PureComponent {
       address: inputValue,
     })
     console.log(this.state.viewport)
+  }
+  postData = () => {
+    const passObj = {
+      address: this.state.address.place_name,
+      location: this.state.address.center,
+    }
+    axios
+      .post('http://localhost:4000/pins', passObj)
   }
 
   render() {
@@ -69,6 +77,7 @@ class MapView extends PureComponent {
             </ReactMapGL>
           </Col>
         </Row>
+        <button onClick={this.postData}>Click here</button>
       </Container>
    );
   }
