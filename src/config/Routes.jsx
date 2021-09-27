@@ -10,7 +10,8 @@ function Routes() {
         <Switch>
             <Route exact path='/pins' component={CreatePinPage} />
             <Route exact path='/pins/:id' component={ShowPinPage} />
-            <Route exact path='/cities/:id' component={ShowCityPage} />
+            {/* <Route exact path='/cities/:id' component={ShowCityPage} /> */}
+            <Route path='/cities/:id' render={(props) => <ShowCityPage {...props} />} />
             <Route exact path='/cities/new' component={CreateCityShowPage} />
         </Switch>
     )
